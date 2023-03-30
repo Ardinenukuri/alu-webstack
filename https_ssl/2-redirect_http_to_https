@@ -37,7 +37,7 @@ frontend www-http
     mode http
     default_backend web-backend
 frontend www-https
-    bind *:443 ssl crt /etc/haproxy/chyna.tech.pem
+    bind *:443 ssl crt /etc/haproxy/ardine.tech.pem
     http-request set-header X-Forwarded-Proto https
     acl letsencrypt-acl path_beg /.well-known/acme-challenge/
     use_backend letsencrypt-backend if letsencrypt-acl
@@ -46,7 +46,7 @@ frontend www-https
 backend web-backend
     redirect scheme https unless { ssl_fc }
     balance roundrobin
-    server 5483-web-01 34.227.242.48:80 check
-    server 5483-web-02 54.160.136.158	:80 check
+    server 5387-web-01 3.83.244.201 check
+    server 5387-web-02 54.196.238.81 check
 backend letsencrypt-backend
    server letsencrypt 127.0.0.1:54321
